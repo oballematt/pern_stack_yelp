@@ -1,10 +1,18 @@
 const express = require('express');
-const cors = require('cors');
 const app = express();
+const cors = require('cors');
+require('dotenv').config()
 
-app.use(express.json());
+const { sequelize } = require('./models');
+
+const port = process.env.PORT || 5001
+
+//MIDDLEWARE
 app.use(cors());
+app.use(express.json());
 
-app.listen(5001, () => {
-    console.log("server now running on port 5001")
-})
+app.listen(port, async () => {
+    console.log(`Server started on port ${port}`);
+    await sequelize.authenticate();
+    console.log('Database connection established');
+});

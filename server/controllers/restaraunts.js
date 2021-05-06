@@ -8,6 +8,7 @@ module.exports = {
             const restaraunt = await Restaraunts.create({ name, location, price_range});
 
             return res.json(restaraunt);
+
         } catch (error) {
             console.error(error.message);
             return res.status(500).json(error);
@@ -20,6 +21,7 @@ module.exports = {
 
             
             return res.json(restaraunts);
+            
         } catch (error) {
             
             console.error(error.message);

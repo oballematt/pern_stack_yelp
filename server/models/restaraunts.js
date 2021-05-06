@@ -14,9 +14,22 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Restaraunts.init({
-    name: DataTypes.STRING,
-    location: DataTypes.STRING,
-    price_range: DataTypes.INTEGER
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    location: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    price_range: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        min: 1,
+        max: 5
+      }
+    },
   }, {
     sequelize,
     timestamps: false,

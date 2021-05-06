@@ -1,7 +1,7 @@
 const { Restaraunts } = require('../models');
 
 module.exports = {
-    createRestaraunt: async () => {
+    createRestaraunt: async (req, res) => {
         const { name, location, price_range } = req.body;
 
         try {
@@ -9,11 +9,12 @@ module.exports = {
 
             return res.json(restaraunt);
         } catch (error) {
-            
+            console.error(error.message);
+            return res.status(500).json(error);
         };
     },
 
-    getRestaraunts: async () => {
+    getRestaraunts: async (req, res) => {
         try {
             const restaraunts = await Restaraunts.findAll();
 
@@ -27,7 +28,7 @@ module.exports = {
         
     },
 
-    getOneRestaraunt: async () => {
+    getOneRestaraunt: async (req, res) => {
         const { id } = req.params;
         
         try {
@@ -47,23 +48,26 @@ module.exports = {
         };
     },
 
-    updateRestaraunt: async () => {
+    updateRestaraunt: async (req, res) => {
         const { id } = req.params;
         const { name, location, price_range } = req.body;
 
         try {
 
-             await Restaraunts.update({
-               name,
-               location,
-               price_range,
-               where: {
-                   id
-               }
+            const restaraunt = await Restaraunts.findOne({
+                where: {
+                    id
+                }
             });
 
-            return res.json({message: "Restaraunt was updated!"});
+            restaraunt.name = name;
+            restaraunt.location = location;
+            restaraunt.price_range = price_range;
+
+            await restaraunt.save();
             
+            return res.json(restaraunt);
+
         } catch (error) {
           
             console.error(error.message);
@@ -71,7 +75,7 @@ module.exports = {
         };
     },
 
-    deleteRestaraunt: async () => {
+    deleteRestaraunt: async (req, res) => {
         const { id } = req.params;
         
         try {

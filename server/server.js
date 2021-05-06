@@ -15,6 +15,6 @@ app.use('/api', require('./routes/restaraunts'));
 
 app.listen(port, async () => {
     console.log(`Server started on port ${port}`);
-    await sequelize.sync({force: true});
+    await sequelize.authenticate();
     console.log('Database connection established');
 });

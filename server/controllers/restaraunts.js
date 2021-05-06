@@ -79,11 +79,13 @@ module.exports = {
         const { id } = req.params;
         
         try {
-            await Restaraunt.destroy({
+            await Restaraunts.destroy({
                 where: { 
                     id
                 }
             });
+
+            return res.json({message: 'Restaraunt was deleted!'});
         } catch (error) {
             
             console.error(error.message);

@@ -1,6 +1,7 @@
 const { Users } = require('../models');
 const bcrypt = require('bcrypt');
 const jwtGenerator = require('../utils/jwtGenerator')
+
 module.exports = {
 
     createUser: async (req, res) => {
@@ -50,7 +51,7 @@ module.exports = {
                 where: {
                     user_email
                 }
-            })
+            });
 
             const validPassword = await bcrypt.compare(user_password, userPassword.user_password);
 
@@ -66,6 +67,19 @@ module.exports = {
 
             console.error(error.message);
             res.status(500).send("Server Error");
+        };
+    },
+
+    verifyUser: async (req, res) => {
+        try {
+           
+            res.json(true)
+
+        } catch (error) {
+
+            console.error(error.message
+                )
+            res.status(500).send("Server Error")
         };
     }
 }

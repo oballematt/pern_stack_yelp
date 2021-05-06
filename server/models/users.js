@@ -37,7 +37,8 @@ module.exports = (sequelize, DataTypes) => {
       set(value) {
         const hash = bcrypt.hashSync(value, 10);
         this.setDataValue('user_password', hash);
-      }
+        bcrypt.compareSync('user_password', hash)
+      },
     },
   }, {
     sequelize,

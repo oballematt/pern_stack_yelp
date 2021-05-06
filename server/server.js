@@ -13,6 +13,7 @@ app.use(express.json());
 
 app.use('/api', require('./routes/restaraunts'));
 app.use('/api', require('./routes/users'));
+app.use('/api', require('./routes/profile'));
 
 app.listen(port, async () => {
     console.log(`Server started on port ${port}`);

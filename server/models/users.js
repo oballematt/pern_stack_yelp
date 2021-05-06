@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     toJSON(){
-      return {...this.get(), id: undefined, user_id: undefined, user_password: undefined}
+      return {...this.get(), id: undefined, user_password: undefined}
     }
   };
   Users.init({
@@ -41,7 +41,6 @@ module.exports = (sequelize, DataTypes) => {
       set(value) {
         const hash = bcrypt.hashSync(value, 10);
         this.setDataValue('user_password', hash);
-        bcrypt.compareSync('user_password', hash)
       },
     },
   }, {

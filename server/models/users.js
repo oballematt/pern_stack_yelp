@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
+
+    toJSON(){
+      return {...this.get(), id: undefined, user_id: undefined, user_password: undefined}
+    }
   };
   Users.init({
     user_id:{ 

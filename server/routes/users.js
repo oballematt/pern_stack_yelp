@@ -4,7 +4,9 @@ const usersController = require('../controllers/users');
 
 router.post('/register', usersController.createUser);
 
-router.post('/login', usersController.loginUser)
+router.get('/register', usersController.getUsers)
 
-router.get('/verify', authorization, usersController.verifyUser)
+router.post('/login', usersController.loginUser);
+
+router.get('/verify', authorization, usersController.verifyUser);
 module.exports = router

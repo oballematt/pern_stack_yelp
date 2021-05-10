@@ -1,26 +1,26 @@
-// const { Users } = require('../models');
-// const authorization = require('../middleware/authorization')
+const { Users } = require('../models');
 
-// module.exports = {
 
-//         getVerifiedUser: async (req, res) => {
+module.exports = {
 
-//             try {
+        getVerifiedUser: async (req, res) => {
+
+            try {
                 
-//                 const user = await Users.findOne({
-//                     where: {
-//                         user_id: authorization.req.user
-//                     }
-//                 });
+                const user = await Users.findOne({
+                    where: {
+                        user_id: req.user
+                    }
+                });
     
-//                 return res.json(user)
+                return res.json(user)
 
-//             } catch (error) {
+            } catch (error) {
                 
-//                 console.error(error.message);
-//                 res.status(500).json("Server Error");
+                console.error(error.message);
+                res.status(500).json("Server Error");
                 
-//             }
+            }
             
-//         }
-// };
+        }
+};

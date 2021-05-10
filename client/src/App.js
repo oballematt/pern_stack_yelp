@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
 import Home from './routes/Home' 
 import UpdatePage from './routes/UpdatePage' 
-import RestarauntDetail from './routes/RestarauntDetail'
+import RestaurantDetail from './routes/RestaurantDetail'
 import Login from './routes/Login' 
 import Register from './routes/Register'
 import Profile from './routes/Profile'
@@ -47,9 +47,9 @@ const setAuth = (boolean) => {
               )
           }
           />
-          <Route exact path='/' component={Home} />
+          <Route exact path='/'component={Home} />
           <Route exact path='/restaraunts/:id/update' component={UpdatePage} />
-          <Route exact path='/restaraunts/:id' component={RestarauntDetail} />
+          <Route exact path='/restaraunts/:id' component={RestaurantDetail} />
         </Switch>
       </Router>
     </div>

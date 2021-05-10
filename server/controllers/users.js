@@ -18,7 +18,7 @@ module.exports = {
             if (user.length !== 0) {
                 return res.status(401).send('User already exists');
             }
-
+            
             const newUser = await Users.create({ user_name, user_email, user_password });
 
             const token = jwtGenerator(newUser.user_id);
@@ -37,9 +37,9 @@ module.exports = {
 
         try {
 
-            const user = await Users.findAll({
+            const user = await Users.findOne({
                 where: {
-                    user_email: user_email
+                    user_email
                 }
             });
 
@@ -47,13 +47,13 @@ module.exports = {
                 return res.status(401).json("Email or Password is incorrect");
             };
 
-            const userPassword = await Users.findOne({
-                where: {
-                    user_email
-                }
-            });
+            // const userPassword = await Users.findOne({
+            //     where: {
+            //         user_email
+            //     }
+            // });
 
-            const validPassword = await bcrypt.compare(user_password, userPassword.user_password);
+            const validPassword = await bcrypt.compare(user_password, user.user_password);
 
             if (!validPassword) {
                 return res.status(401).json("Email or Password is incorrect");

@@ -1,38 +1,39 @@
 import React from 'react'
+import './login.css'
 
-const Login = () => {
+const Login = (props) => {
     return (
-        <div className='container flex mx-auto max-w-screen-md items-center h-screen'>
-            <div className='flex flex-col ml-5 w-2/5'>
-                <div className="flex flex-col bg-white items-center p-4 border mb-4">
-                    <form method='POST'>
-                        <input
-                            aria-label="Enter your email address"
-                            className="text-sm w-full py-5 px-2 h-2 border rounded mb-2"
-                            type="text"
-                            placeholder="Email address"
-                        />
-                        <input
-                            aria-label="Enter your password"
-                            className="text-sm w-full py-5 px-2 h-2 border rounded mb-2"
-                            type="password"
-                            placeholder="Password"
-                        />
-                        <button
-        
-                            type="submit"
-                            className={`bg-blue-500 text-white w-full rounded h-8 font-bold}`}>
-                            Login
-                        </button>
-                    </form>
-                </div>
-                <div className="flex justify-center items-center flex-col w-full bg-white p-4 border">
-                    <p className='text-sm'>
-                        Dont have an account?{' '}
-                    </p>
+        <div style={{ minHeight: '100vh' }} className="container d-flex align-items-center justify-content-center">
+                <div class="card border-primary bg-secondary text-center mb-3 w-100" style={{ maxWidth: "400px" }}>
+                    <div class="card-header">
+                        <h1 className="mt-5 text-white">Login</h1>
+                    </div>
+                    <div class="card-body text-primary">
+                        <form >
+                            <input
+                                className="form-control my-3"
+                                type="email"
+                                name="email"
+                                placeholder="Email"
+                            />
+                            <input
+                                className="form-control my-3"
+                                type="password"
+                                name="password"
+                                placeholder="Password"
+                            />
+                            <div className="col-md-12">
+                                <button onClick={() => props.setAuth(true)} className="btn btn-success btn-block">
+                                    Login
+                            </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div className="bg-light mt-3">
+                         Dont have an account? Sign up
+                    </div>
                 </div>
             </div>
-        </div>
     )
 }
 

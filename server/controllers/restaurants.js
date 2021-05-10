@@ -1,13 +1,13 @@
-const { Restaraunts } = require('../models');
+const { Restaurants } = require('../models');
 
 module.exports = {
-    createRestaraunt: async (req, res) => {
+    createRestaurant: async (req, res) => {
         const { name, location, price_range } = req.body;
 
         try {
-            const restaraunt = await Restaraunts.create({ name, location, price_range});
+            const restaurant = await Restaurants.create({ name, location, price_range});
 
-            return res.json(restaraunt);
+            return res.json(restaurant);
 
         } catch (error) {
             console.error(error.message);
@@ -15,12 +15,12 @@ module.exports = {
         };
     },
 
-    getRestaraunts: async (req, res) => {
+    getRestaurants: async (req, res) => {
         try {
-            const restaraunts = await Restaraunts.findAll();
+            const restaurants = await Restaurants.findAll();
 
             
-            return res.json(restaraunts);
+            return res.json(restaurants);
             
         } catch (error) {
             
@@ -30,18 +30,18 @@ module.exports = {
         
     },
 
-    getOneRestaraunt: async (req, res) => {
+    getOneRestaurant: async (req, res) => {
         const { id } = req.params;
         
         try {
             
-            const restaraunt = await Restaraunts.findOne({
+            const restaurant = await Restaurants.findOne({
                 where: {
                     id
                 }
             });
 
-            return res.json(restaraunt);
+            return res.json(restaurant);
 
         } catch (error) {
             
@@ -50,25 +50,25 @@ module.exports = {
         };
     },
 
-    updateRestaraunt: async (req, res) => {
+    updateRestaurant: async (req, res) => {
         const { id } = req.params;
         const { name, location, price_range } = req.body;
 
         try {
 
-            const restaraunt = await Restaraunts.findOne({
+            const restaurant = await Restaurants.findOne({
                 where: {
                     id
                 }
             });
 
-            restaraunt.name = name;
-            restaraunt.location = location;
-            restaraunt.price_range = price_range;
+            restaurant.name = name;
+            restaurant.location = location;
+            restaurant.price_range = price_range;
 
-            await restaraunt.save();
+            await restaurant.save();
             
-            return res.json(restaraunt);
+            return res.json(restaurant);
 
         } catch (error) {
           
@@ -77,17 +77,17 @@ module.exports = {
         };
     },
 
-    deleteRestaraunt: async (req, res) => {
+    deleteRestaurant: async (req, res) => {
         const { id } = req.params;
         
         try {
-            await Restaraunts.destroy({
+            await Restaurants.destroy({
                 where: { 
                     id
                 }
             });
 
-            return res.json({message: 'Restaraunt was deleted!'});
+            return res.json({message: 'Restaurant was deleted!'});
         } catch (error) {
             
             console.error(error.message);

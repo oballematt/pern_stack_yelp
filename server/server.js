@@ -11,7 +11,7 @@ const port = process.env.PORT || 5001;
 app.use(cors());
 app.use(express.json());
 
-app.use('/api', require('./routes/restaraunts'));
+app.use('/api', require('./routes/restaurants'));
 app.use('/api', require('./routes/users'));
 app.use('/api', require('./routes/profile'));
 
